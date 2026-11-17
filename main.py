@@ -1,5 +1,6 @@
 """Mini NPU Simulator - MAC 연산으로 Cross / X 패턴을 판별한다. (표준 라이브러리만 사용)"""
 import json
+import math
 import os
 import sys
 import time
@@ -65,7 +66,10 @@ def read_matrix(title, n=3):
                 parts = input().split()
                 if len(parts) != n:
                     raise ValueError
-                rows.append([float(p) for p in parts])
+                row = [float(p) for p in parts]
+                if not all(math.isfinite(v) for v in row):  # nan/inf 거부
+                    raise ValueError
+                rows.append(row)
             return rows
         except ValueError:
             print(f"입력 형식 오류: 각 줄에 {n}개의 숫자를 공백으로 구분해 입력하세요. 처음부터 다시 입력합니다.")

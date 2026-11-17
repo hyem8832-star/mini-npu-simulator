@@ -88,7 +88,7 @@ def mode_user():
         print(f"판정: 판정 불가 (|A-B| < {EPSILON})")
     else:
         print(f"판정: {judge(sa, sb)}")
-    print_performance([3, 5, 13, 25])
+    print_performance([3])
 
 
 # ---------- 모드 2 ----------
